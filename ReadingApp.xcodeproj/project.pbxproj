@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		D21B5ADC28169923005CC945 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21B5ADB28169923005CC945 /* GoogleService-Info.plist */; };
+		D2A0F6EB2817138E00CA94D1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0F6EA2817138E00CA94D1 /* NetworkManager.swift */; };
+		D2A0F6EE281720E100CA94D1 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0F6ED281720E100CA94D1 /* NetworkResponse.swift */; };
+		D2A0F6F028172CB800CA94D1 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0F6EF28172CB800CA94D1 /* String+Extension.swift */; };
+		D2A0F6F228172CD900CA94D1 /* DecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0F6F128172CD900CA94D1 /* DecodingError.swift */; };
+		D2A0F6F428172D2700CA94D1 /* Novel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0F6F328172D2700CA94D1 /* Novel.swift */; };
 		D2CCB178281695070071DA51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CCB177281695070071DA51 /* AppDelegate.swift */; };
 		D2CCB17A281695070071DA51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CCB179281695070071DA51 /* SceneDelegate.swift */; };
 		D2CCB17C281695070071DA51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CCB17B281695070071DA51 /* ViewController.swift */; };
@@ -22,6 +27,11 @@
 		38EA93CA6DF62CE97C84B13E /* Pods-ReadingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadingApp.debug.xcconfig"; path = "Target Support Files/Pods-ReadingApp/Pods-ReadingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3FD8701FB7E8280A2012FF8E /* Pods_ReadingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D21B5ADB28169923005CC945 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D2A0F6EA2817138E00CA94D1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		D2A0F6ED281720E100CA94D1 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		D2A0F6EF28172CB800CA94D1 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		D2A0F6F128172CD900CA94D1 /* DecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingError.swift; sourceTree = "<group>"; };
+		D2A0F6F328172D2700CA94D1 /* Novel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Novel.swift; sourceTree = "<group>"; };
 		D2CCB174281695070071DA51 /* ReadingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CCB177281695070071DA51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2CCB179281695070071DA51 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +62,36 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D2A0F6EC281720B900CA94D1 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D2A0F6F128172CD900CA94D1 /* DecodingError.swift */,
+				D2A0F6EA2817138E00CA94D1 /* NetworkManager.swift */,
+				D2A0F6ED281720E100CA94D1 /* NetworkResponse.swift */,
+				D2A0F6EF28172CB800CA94D1 /* String+Extension.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		D2A0F6F528172D3400CA94D1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2A0F6F328172D2700CA94D1 /* Novel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D2A0F6F628172D8400CA94D1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D2CCB177281695070071DA51 /* AppDelegate.swift */,
+				D2CCB179281695070071DA51 /* SceneDelegate.swift */,
+				D2CCB1822816950B0071DA51 /* LaunchScreen.storyboard */,
+				D2CCB17D281695070071DA51 /* Main.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		D2CCB16B281695070071DA51 = {
 			isa = PBXGroup;
 			children = (
@@ -73,12 +113,11 @@
 		D2CCB176281695070071DA51 /* ReadingApp */ = {
 			isa = PBXGroup;
 			children = (
-				D2CCB177281695070071DA51 /* AppDelegate.swift */,
-				D2CCB179281695070071DA51 /* SceneDelegate.swift */,
+				D2A0F6F628172D8400CA94D1 /* App */,
+				D2A0F6F528172D3400CA94D1 /* Model */,
+				D2A0F6EC281720B900CA94D1 /* Networking */,
 				D2CCB17B281695070071DA51 /* ViewController.swift */,
-				D2CCB17D281695070071DA51 /* Main.storyboard */,
 				D2CCB1802816950B0071DA51 /* Assets.xcassets */,
-				D2CCB1822816950B0071DA51 /* LaunchScreen.storyboard */,
 				D21B5ADB28169923005CC945 /* GoogleService-Info.plist */,
 				D2CCB1852816950B0071DA51 /* Info.plist */,
 			);
@@ -210,8 +249,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A0F6EB2817138E00CA94D1 /* NetworkManager.swift in Sources */,
+				D2A0F6EE281720E100CA94D1 /* NetworkResponse.swift in Sources */,
+				D2A0F6F428172D2700CA94D1 /* Novel.swift in Sources */,
 				D2CCB17C281695070071DA51 /* ViewController.swift in Sources */,
 				D2CCB178281695070071DA51 /* AppDelegate.swift in Sources */,
+				D2A0F6F028172CB800CA94D1 /* String+Extension.swift in Sources */,
+				D2A0F6F228172CD900CA94D1 /* DecodingError.swift in Sources */,
 				D2CCB17A281695070071DA51 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

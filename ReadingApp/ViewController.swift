@@ -1,19 +1,20 @@
-//
-//  ViewController.swift
-//  ReadingApp
-//
-//  Created by Inna Litvinenko on 25.04.2022.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    
+        let networkManager = NetworkManager()
+        networkManager.getChapter(from: .hotBayouNights, number: 1) { response in
+            switch response {
+            case .success(let attributedString):
+                print(attributedString)
+            default:
+                break
+            }
+        }
     }
-
 
 }
 
