@@ -8,6 +8,6 @@ target 'ReadingApp' do
   # Pods for ReadingApp
 
    pod 'Firebase/Core'
-   pod 'Firebase/Database'
+   pod 'Firebase/Storage'
 
 end
