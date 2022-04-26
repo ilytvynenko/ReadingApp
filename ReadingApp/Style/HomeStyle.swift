@@ -1,6 +1,6 @@
 import UIKit
 
-enum Style {
+extension Style {
     enum Home {
         ///Colors
         static var backgroundColor: UIColor {
@@ -19,10 +19,33 @@ enum Style {
         static var titleLeftMargin: CGFloat {
             16
         }
+        static var categoryTitleViewHeight: CGFloat {
+            56
+        }
+        static var stackViewHeight: CGFloat {
+            24
+        }
+        static var stackViewWidth: CGFloat {
+            200
+        }
+        
+        //Images
+        static var starImage: UIImage? {
+            UIImage(named: "star")
+        }
         
         ///Other
         static var titleAlignment: NSTextAlignment {
             .left
+        }
+        static var stackViewAxis: NSLayoutConstraint.Axis {
+            .horizontal
+        }
+        static var stackViewSpacing: CGFloat {
+            9
+        }
+        static var imageViewContentMode: UIView.ContentMode {
+            .scaleAspectFit
         }
     }
 }

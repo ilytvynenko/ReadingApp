@@ -10,8 +10,9 @@
 		D21B5ADC28169923005CC945 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D21B5ADB28169923005CC945 /* GoogleService-Info.plist */; };
 		D2935D312817E38600178A2C /* NunitoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2935D302817E38600178A2C /* NunitoSans-Bold.ttf */; };
 		D2935D342817E85700178A2C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2935D332817E85700178A2C /* NavigationController.swift */; };
-		D2935D362817E8B500178A2C /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2935D352817E8B500178A2C /* Style.swift */; };
 		D2935D382817EAB600178A2C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2935D372817EAB600178A2C /* Strings.swift */; };
+		D2935D3B2817F44700178A2C /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2935D3A2817F44700178A2C /* Style.swift */; };
+		D2935D3D2817F45200178A2C /* HomeStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2935D3C2817F45200178A2C /* HomeStyle.swift */; };
 		D2A0F6EB2817138E00CA94D1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0F6EA2817138E00CA94D1 /* NetworkManager.swift */; };
 		D2A0F6EE281720E100CA94D1 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0F6ED281720E100CA94D1 /* NetworkResponse.swift */; };
 		D2A0F6F028172CB800CA94D1 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A0F6EF28172CB800CA94D1 /* String+Extension.swift */; };
@@ -34,8 +35,9 @@
 		D21B5ADB28169923005CC945 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D2935D302817E38600178A2C /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-Bold.ttf"; sourceTree = "<group>"; };
 		D2935D332817E85700178A2C /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
-		D2935D352817E8B500178A2C /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		D2935D372817EAB600178A2C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		D2935D3A2817F44700178A2C /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		D2935D3C2817F45200178A2C /* HomeStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStyle.swift; sourceTree = "<group>"; };
 		D2A0F6EA2817138E00CA94D1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D2A0F6ED281720E100CA94D1 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		D2A0F6EF28172CB800CA94D1 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -78,6 +80,15 @@
 				D2935D302817E38600178A2C /* NunitoSans-Bold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D2935D392817F43B00178A2C /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				D2935D3A2817F44700178A2C /* Style.swift */,
+				D2935D3C2817F45200178A2C /* HomeStyle.swift */,
+			);
+			path = Style;
 			sourceTree = "<group>";
 		};
 		D2A0F6EC281720B900CA94D1 /* Networking */ = {
@@ -130,6 +141,7 @@
 		D2CCB176281695070071DA51 /* ReadingApp */ = {
 			isa = PBXGroup;
 			children = (
+				D2935D392817F43B00178A2C /* Style */,
 				D21B5ADB28169923005CC945 /* GoogleService-Info.plist */,
 				D2CCB1852816950B0071DA51 /* Info.plist */,
 				D2CCB17B281695070071DA51 /* HomeViewController.swift */,
@@ -141,7 +153,6 @@
 				D2A0F6F528172D3400CA94D1 /* Model */,
 				D2A0F6EC281720B900CA94D1 /* Networking */,
 				D2935D332817E85700178A2C /* NavigationController.swift */,
-				D2935D352817E8B500178A2C /* Style.swift */,
 				D2935D372817EAB600178A2C /* Strings.swift */,
 			);
 			path = ReadingApp;
@@ -278,13 +289,14 @@
 				D2A0F6EE281720E100CA94D1 /* NetworkResponse.swift in Sources */,
 				D2A0F6F428172D2700CA94D1 /* Novel.swift in Sources */,
 				D2CCB17C281695070071DA51 /* HomeViewController.swift in Sources */,
+				D2935D3B2817F44700178A2C /* Style.swift in Sources */,
 				D2CCB178281695070071DA51 /* AppDelegate.swift in Sources */,
 				D2A0F6F028172CB800CA94D1 /* String+Extension.swift in Sources */,
 				D2935D342817E85700178A2C /* NavigationController.swift in Sources */,
 				D2A0F6F228172CD900CA94D1 /* DecodingError.swift in Sources */,
+				D2935D3D2817F45200178A2C /* HomeStyle.swift in Sources */,
 				D2CCB17A281695070071DA51 /* SceneDelegate.swift in Sources */,
 				D2935D382817EAB600178A2C /* Strings.swift in Sources */,
-				D2935D362817E8B500178A2C /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
