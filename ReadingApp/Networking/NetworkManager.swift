@@ -2,7 +2,7 @@ import FirebaseStorage
 
 protocol NetworkManagerProtocol {
     func getChapter(from novel: Novel, number: Int, completionHandler: @escaping (NetworkResponse) -> Void)
-//    func getImage()
+    func getImage(from novel: Novel, completionHandler: @escaping (NetworkResponse) -> Void)
 }
 
 class NetworkManager {
@@ -20,13 +20,29 @@ class NetworkManager {
 //MARK: - NetworkManagerProtocol
 extension NetworkManager: NetworkManagerProtocol {
 
+    func getImage(from novel: Novel, completionHandler: @escaping (NetworkResponse) -> Void) {
+        let novelName = novel.rawValue.capitalizeFirstLetter()
+        let reference = storage.reference().child("\(novelName)/image.jpg")
+        reference.getData(maxSize: maxDataSize) { data, error in
+            if let error = error {
+                completionHandler(.error(error))
+            } else {
+                guard let data = data,
+                    let image = UIImage(data: data)
+                else {
+                    completionHandler(.error(DecodingError()))
+                    return
+                }
+                completionHandler(.success(.image(image)))
+            }
+        }
+    }
+
     func getChapter(from novel: Novel, number: Int, completionHandler: @escaping (NetworkResponse) -> Void) {
         let novelName = novel.rawValue.capitalizeFirstLetter()
         let reference = storage.reference().child("\(novelName)/\(novelName)\(number).html")
-
         reference.getData(maxSize: maxDataSize) { data, error in
             if let error = error {
-                print("error \(error.localizedDescription)")
                 completionHandler(.error(error))
             } else {
                 guard let data = data,
@@ -34,12 +50,11 @@ extension NetworkManager: NetworkManagerProtocol {
                                                                 options: [.documentType: self.outputType,
                                                                               .characterEncoding: String.Encoding.utf8.rawValue],
                                                                 documentAttributes: nil)
-                    else {
+                else {
                     completionHandler(.error(DecodingError()))
                     return
                 }
-                print("success")
-                completionHandler(.success(decodedString))
+                completionHandler(.success(.text(decodedString)))
             }
         }
     }
