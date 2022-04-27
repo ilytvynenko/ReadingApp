@@ -48,25 +48,6 @@ private extension HomeViewController {
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ])
 
-        ///Collection view
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.dataSource = dataSource
-        collectionView.backgroundColor = Style.Home.backgroundColor
-        collectionView.register(NovelCoverCell.self, forCellWithReuseIdentifier: Strings.Utility.novelCoverCellID)
-        view.addSubview(collectionView)
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Style.Home.collectionViewLeftMargin),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-        
-        let headerRegistration = UICollectionView.SupplementaryRegistration
-            <HomeSectionHeader>(elementKind: UICollectionView.elementKindSectionHeader) { _,_,_ in}
-        dataSource.supplementaryViewProvider = { supplementaryView, elementKind, indexPath in
-            return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
-        }
-        
         ///Tab bar
         let tabBarController = UITabBarController()
         tabBarController.tabBar.tintColor = Style.Home.tabTintColor
@@ -74,6 +55,20 @@ private extension HomeViewController {
         firstViewController.tabBarItem = UITabBarItem(title: Strings.Home.tab, image: Style.Home.homeImage, tag: 0)
         tabBarController.viewControllers = [firstViewController]
         view.addSubview(tabBarController.view)
+        
+        ///Collection view
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.dataSource = dataSource
+        collectionView.delegate = self
+        collectionView.backgroundColor = Style.Home.backgroundColor
+        collectionView.register(NovelCoverCell.self, forCellWithReuseIdentifier: Strings.Utility.novelCoverCellID)
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: tabBarController.tabBar.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Style.Home.collectionViewLeftMargin),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
         
         ///Activity Indicator
         activityIndicator.startAnimating()
@@ -109,5 +104,14 @@ private extension HomeViewController {
                 break
             }
         }
+    }
+}
+
+//MARK: - UICollectionViewDelegate
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let newVC = UIViewController()
+        newVC.view.backgroundColor = .white
+        navigationController?.pushViewController(newVC, animated: true)
     }
 }

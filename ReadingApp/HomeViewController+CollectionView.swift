@@ -6,11 +6,17 @@ extension HomeViewController {
     }
 
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, NovelCover> {
-        UICollectionViewDiffableDataSource<Section, NovelCover>(collectionView: collectionView) { collectionView, indexPath, novelCover in
+        let dataSource = UICollectionViewDiffableDataSource<Section, NovelCover>(collectionView: collectionView) { collectionView, indexPath, novelCover in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Strings.Utility.novelCoverCellID, for: indexPath) as? NovelCoverCell
             cell?.configure(with: self.covers[indexPath.row])
             return cell ?? UICollectionViewCell()
         }
+        let headerRegistration = UICollectionView.SupplementaryRegistration
+            <HomeSectionHeader>(elementKind: UICollectionView.elementKindSectionHeader) { _,_,_ in}
+        dataSource.supplementaryViewProvider = { supplementaryView, elementKind, indexPath in
+            return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+        }
+        return dataSource
     }
 
     func update(with list: [NovelCover], animate: Bool = true) {
