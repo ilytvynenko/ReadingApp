@@ -4,3 +4,9 @@ enum Strings {
         static var categoryTitle = "Premium Stories"
     }
 }
+
+extension Strings {
+    enum Utility {
+        static var novelCoverCellID = "NovelCoverCell"
+    }
+}

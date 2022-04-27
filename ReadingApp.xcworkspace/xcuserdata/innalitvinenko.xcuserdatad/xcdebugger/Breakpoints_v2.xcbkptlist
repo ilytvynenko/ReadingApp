@@ -46,9 +46,9 @@
             filePath = "ReadingApp/HomeViewController+CollectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "collectionView(_:viewForSupplementaryElementOfKind:at:)"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "createLayout()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

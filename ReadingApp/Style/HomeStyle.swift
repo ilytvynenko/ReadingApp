@@ -9,10 +9,19 @@ extension Style {
         static var titleColor: UIColor {
             UIColor(red: 245 / 255, green: 245 / 255, blue: 245 / 255, alpha: 1)
         }
+        static var sectionTitleColor: UIColor {
+            .white
+        }
+        static var collectionViewCellTitleColor: UIColor {
+            UIColor(red: 235 / 255, green: 237 / 255, blue: 240 / 255, alpha: 1)
+        }
         
         ///Fonts
         static var titleFont: UIFont? {
             UIFont(name: "NunitoSans-Bold", size: 20)
+        }
+        static var cellTitleFont: UIFont? {
+            UIFont(name: "NunitoSans-Bold", size: 14)
         }
         
         ///Layout
@@ -27,6 +36,30 @@ extension Style {
         }
         static var stackViewWidth: CGFloat {
             200
+        }
+        static var collectionViewCellItemWidth: CGFloat {
+            120
+        }
+        static var collectionViewCellItemFractionalHight: CGFloat {
+            1
+        }
+        static var collectionViewCellGroupFractionalWidth: CGFloat {
+            1
+        }
+        static var collectionViewCellGroupHeight: CGFloat {
+            200
+        }
+        static var collectionViewCellIconHeight: CGFloat {
+            150
+        }
+        static var collectionViewLeftMargin: CGFloat {
+            16
+        }
+        static var collectionViewCellLabelRightMargin: CGFloat {
+            -16
+        }
+        static var collectionViewCellLabelTopMargin: CGFloat {
+            8
         }
         
         //Images
@@ -46,6 +79,15 @@ extension Style {
         }
         static var imageViewContentMode: UIView.ContentMode {
             .scaleAspectFit
+        }
+        static var collectionViewItemContentInset: NSDirectionalEdgeInsets {
+            NSDirectionalEdgeInsets(top: 0, leading: 6, bottom: 0, trailing: 6)
+        }
+        static var collectionViewCellIconCornerRadius: CGFloat {
+            8
+        }
+        static var collectionViewCellLabelNumberOfLines: Int {
+            2
         }
     }
 }
