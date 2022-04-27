@@ -11,28 +11,22 @@ class HomeViewController: UIViewController {
     }
 
     private var presenter: PresenterProtocol = Presenter()
+    private var activityIndicator = UIActivityIndicatorView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        getCovers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNeedsStatusBarAppearanceUpdate()
-        presenter.getNovelCovers(from: Novel.allCases) { response in
-            switch response {
-            case .success(.covers(let covers)):
-                self.covers = covers
-            default:
-                break
-            }
-        }
     }
 }
 
 //MARK: -  UI Configuration
-extension HomeViewController {
+private extension HomeViewController {
 
     func setupUI() {
         view.backgroundColor = Style.Home.backgroundColor
@@ -80,5 +74,40 @@ extension HomeViewController {
         firstViewController.tabBarItem = UITabBarItem(title: Strings.Home.tab, image: Style.Home.homeImage, tag: 0)
         tabBarController.viewControllers = [firstViewController]
         view.addSubview(tabBarController.view)
+        
+        ///Activity Indicator
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.tintColor = .systemPink
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+}
+
+//MARK: - Data Updates
+private extension HomeViewController {
+    func getCovers() {
+        activityIndicator.isHidden = false
+        presenter.getNovelCovers(from: Novel.allCases) { [activityIndicator] response in
+            switch response {
+            case .success(.covers(let covers)):
+                activityIndicator.isHidden = true
+                self.covers = covers
+            case .error(let error):
+                activityIndicator.isHidden = true
+                let alert = UIAlertController(title: Strings.Common.errorOccured, message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: Strings.Common.ok, style: UIAlertAction.Style.default, handler: nil))
+                alert.addAction(UIAlertAction(title: Strings.Common.reload, style: UIAlertAction.Style.default, handler: { _ in
+                    self.getCovers()
+                }))
+                self.present(alert, animated: true, completion: nil)
+            default:
+                break
+            }
+        }
     }
 }
