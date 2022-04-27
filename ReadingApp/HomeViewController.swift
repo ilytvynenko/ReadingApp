@@ -45,7 +45,7 @@ extension HomeViewController {
         titleLabel.textAlignment = Style.Home.titleAlignment
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.navigationItem.titleView = titleLabel
-        guard let containerView = self.navigationItem.titleView?.superview else { return }
+        guard let containerView = self.navigationItem.titleView?.superview?.safeAreaLayoutGuide else { return }
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
@@ -72,5 +72,13 @@ extension HomeViewController {
         dataSource.supplementaryViewProvider = { supplementaryView, elementKind, indexPath in
             return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
         }
+        
+        ///Tab bar
+        let tabBarController = UITabBarController()
+        tabBarController.tabBar.tintColor = Style.Home.tabTintColor
+        let firstViewController = UIViewController()
+        firstViewController.tabBarItem = UITabBarItem(title: Strings.Home.tab, image: Style.Home.homeImage, tag: 0)
+        tabBarController.viewControllers = [firstViewController]
+        view.addSubview(tabBarController.view)
     }
 }

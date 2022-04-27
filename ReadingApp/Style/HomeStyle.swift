@@ -15,6 +15,9 @@ extension Style {
         static var collectionViewCellTitleColor: UIColor {
             UIColor(red: 235 / 255, green: 237 / 255, blue: 240 / 255, alpha: 1)
         }
+        static var tabTintColor: UIColor {
+            UIColor(red: 208 / 255, green: 0 / 255, blue: 110 / 255, alpha: 1)
+        }
         
         ///Fonts
         static var titleFont: UIFont? {
@@ -68,6 +71,10 @@ extension Style {
         //Images
         static var starImage: UIImage? {
             UIImage(named: "star")
+        }
+        
+        static var homeImage: UIImage? {
+            UIImage(named: "home")
         }
         
         ///Other
