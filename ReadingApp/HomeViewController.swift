@@ -54,40 +54,6 @@ extension HomeViewController {
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ])
 
-        ///Category title view
-        let categoryTitleView = UIView()
-        categoryTitleView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(categoryTitleView)
-        NSLayoutConstraint.activate([
-            categoryTitleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            categoryTitleView.heightAnchor.constraint(equalToConstant: Style.Home.categoryTitleViewHeight),
-            categoryTitleView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            categoryTitleView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.spacing = Style.Home.stackViewSpacing
-        categoryTitleView.addSubview(stackView)
-        NSLayoutConstraint.activate([
-            stackView.centerYAnchor.constraint(equalTo: categoryTitleView.centerYAnchor),
-            stackView.centerXAnchor.constraint(equalTo: categoryTitleView.centerXAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: Style.Home.stackViewHeight),
-            stackView.widthAnchor.constraint(equalToConstant: Style.Home.stackViewWidth)
-        ])
-
-        let imageView = UIImageView()
-        imageView.image = Style.Home.starImage
-        imageView.contentMode = Style.Home.imageViewContentMode
-        stackView.addArrangedSubview(imageView)
-
-        let categoryTitleLabel = UILabel()
-        categoryTitleLabel.text = Strings.Home.categoryTitle
-        categoryTitleLabel.textColor = Style.Home.sectionTitleColor
-        categoryTitleLabel.font = Style.Home.titleFont
-        stackView.addArrangedSubview(categoryTitleLabel)
-
         ///Collection view
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = dataSource
@@ -95,10 +61,16 @@ extension HomeViewController {
         collectionView.register(NovelCoverCell.self, forCellWithReuseIdentifier: Strings.Utility.novelCoverCellID)
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: categoryTitleView.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Style.Home.collectionViewLeftMargin),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        
+        let headerRegistration = UICollectionView.SupplementaryRegistration
+            <HomeSectionHeader>(elementKind: UICollectionView.elementKindSectionHeader) { _,_,_ in}
+        dataSource.supplementaryViewProvider = { supplementaryView, elementKind, indexPath in
+            return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+        }
     }
 }

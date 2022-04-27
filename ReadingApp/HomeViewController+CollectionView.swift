@@ -32,6 +32,12 @@ extension HomeViewController {
                                                            subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .groupPaging
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(Style.Home.collectionViewHeaderFractionalWidth),
+                                                          heightDimension: .absolute(Style.Home.categoryTitleViewHeight))
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
+                                                                            elementKind: UICollectionView.elementKindSectionHeader,
+                                                                            alignment: .top)
+            section.boundarySupplementaryItems = [sectionHeader]
             return section
         }
     }

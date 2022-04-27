@@ -61,6 +61,9 @@ extension Style {
         static var collectionViewCellLabelTopMargin: CGFloat {
             8
         }
+        static var collectionViewHeaderFractionalWidth: CGFloat {
+            1
+        }
         
         //Images
         static var starImage: UIImage? {
