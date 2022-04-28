@@ -51,7 +51,8 @@ private extension ReadingViewController {
         tableView.prefetchDataSource = self
         tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ChapterTableViewCell.self, forCellReuseIdentifier: Strings.Utility.chapterCellID)
+        tableView.register(ChapterTableViewCell.self,
+                           forCellReuseIdentifier: Strings.Utility.chapterCellID)
         tableView.rowHeight = UITableView.automaticDimension
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -73,15 +74,21 @@ extension ReadingViewController {
 //MARK: - Networking
 extension ReadingViewController {
     func getChapters(number: Int) {
-        presenter.getChapters(from: novel, start: lastCapter + 1, end: lastCapter + number) { response in
+        presenter.getChapters(from: novel,
+                              start: lastCapter + 1,
+                              end: lastCapter + number) { response in
             switch response {
             case .success(.text(let newChapters)):
                 self.lastCapter += number
                 self.chapters.append(contentsOf: newChapters)
                 self.update()
             case .error(let error):
-                let alert = UIAlertController(title: Strings.Common.errorOccured, message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: Strings.Common.ok, style: UIAlertAction.Style.default, handler: nil))
+                let alert = UIAlertController(title: Strings.Common.errorOccured,
+                                              message: error.localizedDescription,
+                                              preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: Strings.Common.ok,
+                                              style: UIAlertAction.Style.default,
+                                              handler: nil))
             default:
                 break
             }

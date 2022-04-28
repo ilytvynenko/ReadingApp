@@ -101,9 +101,9 @@
 		D2935D392817F43B00178A2C /* Style */ = {
 			isa = PBXGroup;
 			children = (
-				D2935D3A2817F44700178A2C /* Style.swift */,
 				D2935D3C2817F45200178A2C /* HomeStyle.swift */,
 				D2A0962A281A87D700BC713E /* ReadingStyle.swift */,
+				D2935D3A2817F44700178A2C /* Style.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -112,8 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				D2935D332817E85700178A2C /* NavigationController.swift */,
-				D2A09625281A81AB00BC713E /* Reading */,
 				D2A09624281A816300BC713E /* Home */,
+				D2A09625281A81AB00BC713E /* Reading */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -142,8 +142,8 @@
 		D2A09626281A81C700BC713E /* String */ = {
 			isa = PBXGroup;
 			children = (
-				D2935D372817EAB600178A2C /* Strings.swift */,
 				D2A0F6EF28172CB800CA94D1 /* String+Extension.swift */,
+				D2935D372817EAB600178A2C /* Strings.swift */,
 			);
 			path = String;
 			sourceTree = "<group>";

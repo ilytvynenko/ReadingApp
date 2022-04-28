@@ -15,7 +15,7 @@ extension Style {
         static var chapterLabelColor: UIColor {
             UIColor(red: 11 / 255, green: 8 / 255, blue: 15 / 255, alpha: 1)
         }
-        
+
         ///Fonts
         static var chapterTitleFont: UIFont? {
             UIFont(name: "NunitoSans-Bold", size: 16)
@@ -23,12 +23,12 @@ extension Style {
         static var chapterLabelFont: UIFont? {
             UIFont(name: "Georgia", size: 16)
         }
-        
+
         ///Images
         static var backImage: UIImage? {
             UIImage(named: "back")
         }
-        
+
         ///Layout
         static var chapterLabelTopMargin: CGFloat {
             8
@@ -51,7 +51,7 @@ extension Style {
         static var chapterTextLabelTrailingMargin: CGFloat {
             -16
         }
-        
+
         ///Other
         static var tableViewSeparatorStyle: UITableViewCell.SeparatorStyle {
             .none

@@ -18,7 +18,7 @@ extension Style {
         static var tabTintColor: UIColor {
             UIColor(red: 208 / 255, green: 0 / 255, blue: 110 / 255, alpha: 1)
         }
-        
+
         ///Fonts
         static var titleFont: UIFont? {
             UIFont(name: "NunitoSans-Bold", size: 20)
@@ -26,7 +26,7 @@ extension Style {
         static var cellTitleFont: UIFont? {
             UIFont(name: "NunitoSans-Bold", size: 14)
         }
-        
+
         ///Layout
         static var titleLeftMargin: CGFloat {
             16
@@ -67,16 +67,16 @@ extension Style {
         static var collectionViewHeaderFractionalWidth: CGFloat {
             1
         }
-        
+
         //Images
         static var starImage: UIImage? {
             UIImage(named: "star")
         }
-        
+
         static var homeImage: UIImage? {
             UIImage(named: "home")
         }
-        
+
         ///Other
         static var titleAlignment: NSTextAlignment {
             .left

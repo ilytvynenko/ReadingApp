@@ -4,7 +4,8 @@ extension ReadingViewController {
     func makeDataSource() -> UITableViewDiffableDataSource<Int, String> {
         let dataSource = UITableViewDiffableDataSource<Int, String>(tableView: tableView) { tableView, indexPath, itemIdentifier in
             let cell = tableView.dequeueReusableCell(withIdentifier: Strings.Utility.chapterCellID, for: indexPath) as? ChapterTableViewCell
-            cell?.configure(with: self.chapters[indexPath.row], chapterNumber: indexPath.row + 1)
+            cell?.configure(with: self.chapters[indexPath.row],
+                            chapterNumber: indexPath.row + 1)
             return cell ?? UITableViewCell()
         }
         return dataSource
@@ -17,7 +18,6 @@ extension ReadingViewController {
         dataSource.apply(snapshot, animatingDifferences: animate)
     }
 }
-
 
 //MARK: -  UITableViewDataSourcePrefetching
 extension ReadingViewController: UITableViewDataSourcePrefetching {

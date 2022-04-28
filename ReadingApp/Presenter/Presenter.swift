@@ -26,7 +26,6 @@ extension Presenter: PresenterProtocol {
                             completionHandler(.success(.text(chapters)))
                         }
                     case .success(.text(let text)):
-                        print(num)
                         chapters += text
                         if chapters.count == (end - start + 1) {
                             completionHandler(.success(.text(chapters)))
@@ -40,6 +39,7 @@ extension Presenter: PresenterProtocol {
             }
         }
     }
+
     func getNovelCovers(from novels: [Novel], completionHandler: @escaping (NetworkResponse) -> Void) {
         var covers: [NovelCover] = []
         novels.forEach { novel in
@@ -58,7 +58,6 @@ extension Presenter: PresenterProtocol {
             }
         }
     }
-
 }
 
 //MARK: Private

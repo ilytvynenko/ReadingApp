@@ -1,1 +1,1 @@
-enum Style {}
+enum Style { }

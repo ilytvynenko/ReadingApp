@@ -12,9 +12,10 @@ extension HomeViewController {
             return cell ?? UICollectionViewCell()
         }
         let headerRegistration = UICollectionView.SupplementaryRegistration
-            <HomeSectionHeader>(elementKind: UICollectionView.elementKindSectionHeader) { _,_,_ in}
+        <HomeSectionHeader>(elementKind: UICollectionView.elementKindSectionHeader) { _, _, _ in }
         dataSource.supplementaryViewProvider = { supplementaryView, elementKind, indexPath in
-            return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration, for: indexPath)
+            return self.collectionView.dequeueConfiguredReusableSupplementary(using: headerRegistration,
+                                                                              for: indexPath)
         }
         return dataSource
     }
@@ -39,7 +40,7 @@ extension HomeViewController {
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .groupPaging
             let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(Style.Home.collectionViewHeaderFractionalWidth),
-                                                          heightDimension: .absolute(Style.Home.categoryTitleViewHeight))
+                                                    heightDimension: .absolute(Style.Home.categoryTitleViewHeight))
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,
                                                                             elementKind: UICollectionView.elementKindSectionHeader,
                                                                             alignment: .top)

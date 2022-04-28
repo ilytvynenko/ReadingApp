@@ -47,7 +47,9 @@ private extension HomeViewController {
         let tabBarController = UITabBarController()
         tabBarController.tabBar.tintColor = Style.Home.tabTintColor
         let firstViewController = UIViewController()
-        firstViewController.tabBarItem = UITabBarItem(title: Strings.Home.tab, image: Style.Home.homeImage, tag: 0)
+        firstViewController.tabBarItem = UITabBarItem(title: Strings.Home.tab,
+                                                      image: Style.Home.homeImage,
+                                                      tag: 0)
         tabBarController.viewControllers = [firstViewController]
         view.addSubview(tabBarController.view)
 
@@ -56,12 +58,14 @@ private extension HomeViewController {
         collectionView.dataSource = dataSource
         collectionView.delegate = self
         collectionView.backgroundColor = Style.Home.backgroundColor
-        collectionView.register(NovelCoverCell.self, forCellWithReuseIdentifier: Strings.Utility.novelCoverCellID)
+        collectionView.register(NovelCoverCell.self,
+                                forCellWithReuseIdentifier: Strings.Utility.novelCoverCellID)
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: tabBarController.tabBar.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Style.Home.collectionViewLeftMargin),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                    constant: Style.Home.collectionViewLeftMargin),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
@@ -81,7 +85,7 @@ private extension HomeViewController {
 //MARK: - Status Bar
 extension HomeViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
+            .lightContent
     }
 }
 
@@ -96,11 +100,17 @@ private extension HomeViewController {
                 self.covers = covers
             case .error(let error):
                 activityIndicator.isHidden = true
-                let alert = UIAlertController(title: Strings.Common.errorOccured, message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: Strings.Common.ok, style: UIAlertAction.Style.default, handler: nil))
-                alert.addAction(UIAlertAction(title: Strings.Common.reload, style: UIAlertAction.Style.default, handler: { _ in
-                    self.getCovers()
-                }))
+                let alert = UIAlertController(title: Strings.Common.errorOccured,
+                                              message: error.localizedDescription,
+                                              preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: Strings.Common.ok,
+                                              style: UIAlertAction.Style.default,
+                                              handler: nil))
+                alert.addAction(UIAlertAction(title: Strings.Common.reload,
+                                              style: UIAlertAction.Style.default,
+                                              handler: { _ in
+                                                  self.getCovers()
+                                              }))
                 self.present(alert, animated: true, completion: nil)
             default:
                 break

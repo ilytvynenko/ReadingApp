@@ -22,15 +22,16 @@ class ChapterTableViewCell: UITableViewCell {
 //MARK: - UI Configuration
 private extension ChapterTableViewCell {
     func setupUI() {
-
         selectionStyle = Style.Reading.cellSelectionStyle
         chapterLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(chapterLabel)
         NSLayoutConstraint.activate([
             chapterLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Style.Reading.chapterLabelTopMargin),
             chapterLabel.heightAnchor.constraint(equalToConstant: Style.Reading.chapterLabelHeight),
-            chapterLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Style.Reading.chapterLabelLeadingMargin),
-            chapterLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Style.Reading.chapterLabelTrailingMargin)
+            chapterLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                  constant: Style.Reading.chapterLabelLeadingMargin),
+            chapterLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                   constant: Style.Reading.chapterLabelTrailingMargin)
         ])
 
         chapterTextLabel.numberOfLines = Style.Reading.chapterTextLabelNumberOfLines
@@ -42,9 +43,12 @@ private extension ChapterTableViewCell {
         contentView.addSubview(chapterTextLabel)
         NSLayoutConstraint.activate([
             chapterTextLabel.topAnchor.constraint(equalTo: chapterLabel.bottomAnchor),
-            chapterTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Style.Reading.chapterTextLabelBottomMargin),
-            chapterTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Style.Reading.chapterTextLabelLeadingMargin),
-            chapterTextLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Style.Reading.chapterTextLabelTrailingMargin)
+            chapterTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
+                                                     constant: Style.Reading.chapterTextLabelBottomMargin),
+            chapterTextLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
+                                                      constant: Style.Reading.chapterTextLabelLeadingMargin),
+            chapterTextLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+                                                       constant: Style.Reading.chapterTextLabelTrailingMargin)
         ])
     }
 }
@@ -56,16 +60,20 @@ private extension ChapterTableViewCell {
         let attributedString = NSMutableAttributedString(string: string)
         attributedString.addAttribute(NSAttributedString.Key.font,
                                       value: Style.Reading.chapterTitleFont,
-                                      range: NSRange(location: 0, length: string.count))
+                                      range: NSRange(location: 0,
+                                                     length: string.count))
         chapterLabel.attributedText = attributedString
     }
 
     func configureTextLabel(with text: String) {
         var text = text
-        text = text.replacingOccurrences(of: Strings.Common.gapLine, with: Strings.Common.newLine)
-        text = text.replacingOccurrences(of: Strings.Common.newLine, with: Strings.Common.gapLine)
+        text = text.replacingOccurrences(of: Strings.Common.gapLine,
+                                         with: Strings.Common.newLine)
+        text = text.replacingOccurrences(of: Strings.Common.newLine,
+                                         with: Strings.Common.gapLine)
         let i = text.firstIndex(of: "\n")
-        let lowerBound = text.index(text.startIndex, offsetBy: (i?.utf16Offset(in: text) ?? 0) + 1)
+        let lowerBound = text.index(text.startIndex,
+                                    offsetBy: (i?.utf16Offset(in: text) ?? 0) + 1)
         text.removeSubrange(Range(uncheckedBounds: (lower: text.startIndex,
                                                     upper: lowerBound)))
         let attributedString = NSMutableAttributedString(string: text)

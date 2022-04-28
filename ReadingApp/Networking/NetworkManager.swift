@@ -29,7 +29,7 @@ extension NetworkManager: NetworkManagerProtocol {
             } else {
                 guard let data = data,
                     let image = UIImage(data: data)
-                else {
+                    else {
                     completionHandler(.error(DecodingError()))
                     return
                 }

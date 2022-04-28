@@ -23,7 +23,8 @@ private extension HomeSectionHeader {
         addSubview(stackView)
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            stackView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: -Style.Home.collectionViewLeftMargin),
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor,
+                                               constant: -Style.Home.collectionViewLeftMargin),
             stackView.heightAnchor.constraint(equalToConstant: Style.Home.stackViewHeight),
             stackView.widthAnchor.constraint(equalToConstant: Style.Home.stackViewWidth)
         ])

@@ -4,11 +4,11 @@ enum Strings {
         static var categoryTitle = "Premium Stories"
         static var tab = "Home"
     }
-    
+
     enum Reading {
         static var chapter = "Chapter"
     }
-    
+
     enum Common {
         static var errorOccured = "Error occured"
         static var ok = "Ok"
