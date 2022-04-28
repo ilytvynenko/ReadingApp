@@ -54,7 +54,7 @@ extension NetworkManager: NetworkManagerProtocol {
                     completionHandler(.error(DecodingError()))
                     return
                 }
-                completionHandler(.success(.text(decodedString)))
+                completionHandler(.success(.text([decodedString])))
             }
         }
     }

@@ -15,5 +15,6 @@ enum Strings {
 extension Strings {
     enum Utility {
         static var novelCoverCellID = "NovelCoverCell"
+        static var chapterCellID = "ChapterCellID"
     }
 }

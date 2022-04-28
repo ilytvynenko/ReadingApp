@@ -2,7 +2,7 @@ import UIKit
 
 enum NetworkResponse {
     enum Output {
-        case text(NSAttributedString)
+        case text([NSAttributedString])
         case image(UIImage)
         case covers([NovelCover])
     }

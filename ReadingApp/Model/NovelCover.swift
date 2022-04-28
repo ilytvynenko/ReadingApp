@@ -1,5 +1,5 @@
 import UIKit
 struct NovelCover: Hashable {
-    var title: String
+    var novel: Novel
     var icon: UIImage
 }

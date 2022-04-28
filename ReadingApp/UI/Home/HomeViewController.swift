@@ -4,7 +4,7 @@ class HomeViewController: UIViewController {
 
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
     lazy var dataSource: UICollectionViewDiffableDataSource<Section, NovelCover> = makeDataSource()
-    var covers: [NovelCover] = [] {
+    private(set) var covers: [NovelCover] = [] {
         didSet {
             update(with: covers)
         }
@@ -17,11 +17,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         getCovers()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
     }
 }
 
@@ -55,7 +50,7 @@ private extension HomeViewController {
         firstViewController.tabBarItem = UITabBarItem(title: Strings.Home.tab, image: Style.Home.homeImage, tag: 0)
         tabBarController.viewControllers = [firstViewController]
         view.addSubview(tabBarController.view)
-        
+
         ///Collection view
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = dataSource
@@ -69,7 +64,7 @@ private extension HomeViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Style.Home.collectionViewLeftMargin),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        
+
         ///Activity Indicator
         activityIndicator.startAnimating()
         activityIndicator.isHidden = true
@@ -80,6 +75,13 @@ private extension HomeViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+}
+
+//MARK: - Status Bar
+extension HomeViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
     }
 }
 
@@ -110,8 +112,7 @@ private extension HomeViewController {
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let newVC = UIViewController()
-        newVC.view.backgroundColor = .white
-        navigationController?.pushViewController(newVC, animated: true)
+        let readingViewController = ReadingViewController(novel: covers[indexPath.row].novel)
+        navigationController?.pushViewController(readingViewController, animated: true)
     }
 }

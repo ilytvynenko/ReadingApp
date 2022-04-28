@@ -16,7 +16,7 @@ class NovelCoverCell: UICollectionViewCell {
     
     func configure(with cover: NovelCover) {
         imageView.image = cover.icon
-        nameLabel.text = cover.title
+        nameLabel.text = cover.novel.title
     }
 }
 
