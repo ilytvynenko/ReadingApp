@@ -2,14 +2,13 @@ import UIKit
 
 class ReadingViewController: UIViewController {
 
-    //TODO: Limit numbers of chapters
-
     private var presenter: PresenterProtocol = Presenter()
     private var novel: Novel
+    private(set) var chaptersPerDownload = 3
+    private(set) var lastCapter = 0
     private(set) var tableView = UITableView()
-    private(set) var lastCapter = 1
-    private(set) var chapters: [NSAttributedString] = []
-    private(set) lazy var dataSource: UITableViewDiffableDataSource<Int, NSAttributedString> = makeDataSource()
+    private(set) var chapters: [String] = []
+    private(set) lazy var dataSource: UITableViewDiffableDataSource<Int, String> = makeDataSource()
 
     init(novel: Novel) {
         self.novel = novel
@@ -23,14 +22,19 @@ class ReadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        getChapters(number: 5)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        lastCapter = 0
+        getChapters(number: chaptersPerDownload)
     }
 }
 
 //MARK: - UI Configuration
 private extension ReadingViewController {
     func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = Style.Reading.backgroundColor
 
         ///Back button
         let backButton = UIBarButtonItem(image: Style.Reading.backImage,
@@ -39,11 +43,16 @@ private extension ReadingViewController {
                                          action: #selector(popToHome))
         backButton.tintColor = Style.Reading.backImageTintColor
         navigationItem.leftBarButtonItem = backButton
+        navigationController?.navigationBar.barTintColor = Style.Reading.barTintColor
 
         ///Table View
         tableView.dataSource = dataSource
+        tableView.separatorStyle = Style.Reading.tableViewSeparatorStyle
+        tableView.prefetchDataSource = self
+        tableView.showsVerticalScrollIndicator = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ChapterTableViewCell.self, forCellReuseIdentifier: Strings.Utility.chapterCellID)
+        tableView.rowHeight = UITableView.automaticDimension
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -71,7 +80,8 @@ extension ReadingViewController {
                 self.chapters.append(contentsOf: newChapters)
                 self.update()
             case .error(let error):
-                print(error)
+                let alert = UIAlertController(title: Strings.Common.errorOccured, message: error.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: Strings.Common.ok, style: UIAlertAction.Style.default, handler: nil))
             default:
                 break
             }

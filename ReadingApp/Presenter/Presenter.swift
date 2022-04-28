@@ -12,20 +12,31 @@ class Presenter {
 extension Presenter: PresenterProtocol {
     func getChapters(from novel: Novel, start: Int, end: Int, completionHandler: @escaping (NetworkResponse) -> Void) {
         if start < 0 || end < start { completionHandler(.error(FetchingError())) }
-        var chapters: [NSAttributedString] = []
-        for num in start...end {
-            getChapter(from: novel, number: num) { response in
-                switch response {
-                case .error(let error):
-                    completionHandler(.error(error))
-                case .success(.text(let text)):
-                    chapters.append(contentsOf: text)
-                    if chapters.count == (end - start + 1) {
-                        completionHandler(.success(.text(chapters)))
+        var chapters: [String] = []
+        let dispatchGroup = DispatchGroup()
+        DispatchQueue.global().async {
+            for num in start...end {
+                dispatchGroup.enter()
+                self.getChapter(from: novel, number: num) { response in
+                    switch response {
+                    case .error(let error):
+                        if chapters.isEmpty {
+                            completionHandler(.error(error))
+                        } else {
+                            completionHandler(.success(.text(chapters)))
+                        }
+                    case .success(.text(let text)):
+                        print(num)
+                        chapters += text
+                        if chapters.count == (end - start + 1) {
+                            completionHandler(.success(.text(chapters)))
+                        }
+                        dispatchGroup.leave()
+                    default:
+                        completionHandler(.error(FetchingError()))
                     }
-                default:
-                    completionHandler(.error(FetchingError()))
                 }
+                dispatchGroup.wait()
             }
         }
     }
